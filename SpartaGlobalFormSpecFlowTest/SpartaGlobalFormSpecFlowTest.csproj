@@ -72,6 +72,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ConfirmationPage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SpartaFormPage.cs" />
     <Compile Include="SpartaGlobalForm.feature.cs">

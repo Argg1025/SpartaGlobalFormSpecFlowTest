@@ -19,6 +19,8 @@ namespace SpartaGlobalFormSpecFlowTest
         private IWebElement _lastName;
         [FindsBy(How = How.CssSelector, Using = "input[type = 'number']")]
         private IWebElement _age;
+        [FindsBy(How = How.CssSelector, Using = "input[type = 'date']")]
+        private IWebElement _date;
         [FindsBy(How = How.CssSelector, Using = "label[for = 'customRadioInline1']")]
         private IWebElement _male;
         [FindsBy(How = How.CssSelector, Using = "label[for = 'customRadioInline2']")]
@@ -35,7 +37,7 @@ namespace SpartaGlobalFormSpecFlowTest
         private IWebElement _emailAddress;
         [FindsBy(How = How.Id, Using = "exampleFormControlInput1")]
         private IWebElement _phoneNumber;
-        [FindsBy(How = How.CssSelector, Using = "label[for = 'streamRadioInline2']")]
+        [FindsBy(How = How.CssSelector, Using = "label[for = 'streamRadioInline1']")]
         private IWebElement _stream1;
         [FindsBy(How = How.CssSelector, Using = "label[for = 'streamRadioInline2']")]
         private IWebElement _stream2;
@@ -43,8 +45,20 @@ namespace SpartaGlobalFormSpecFlowTest
         private IWebElement _terms;
         [FindsBy(How = How.ClassName, Using = "btn")]
         private IWebElement _signInButton;
+        [FindsBy(How = How.Id, Using = "inputUni")]
+        private IWebElement _university;
+        [FindsBy(How = How.Id, Using = "inputAddress2")]
+        private IWebElement _address2;
+        [FindsBy(How = How.Id, Using = "inputCounty")]
+        private IWebElement _county;
+        [FindsBy(How = How.Id, Using = "exampleFormControlTextarea1")]
+        private IWebElement _skills;
+        [FindsBy(How = How.CssSelector, Using = "input[type = 'url']")]
+        private IWebElement _internet;
 
         private const string PageUri = @"http://automation-form.spartaglobal.education/";
+
+        private string[] counties = new string[] {"b", "h", "s", "br" };
 
         public SpartaFormPage(IWebDriver driver)
         {
@@ -84,7 +98,26 @@ namespace SpartaGlobalFormSpecFlowTest
             }
         }
 
-        public void ClickSigninButtton()
+        public void DOB(int d, int m, int y)
+        {
+            _date.Click();
+            for (int i = 0; i <= y; i++)
+            {
+                _date.SendKeys(Keys.ArrowDown);
+            }
+            _date.SendKeys(Keys.ArrowLeft);
+            for (int i = 0; i <= m; i++)
+            {
+                _date.SendKeys(Keys.ArrowDown);
+            }
+            _date.SendKeys(Keys.ArrowLeft);
+            for (int i = 0; i <= d; i++)
+            {
+                _date.SendKeys(Keys.ArrowDown);
+            }
+        }
+
+        public void ClickSigninButton()
         {
             _signInButton.Click();
         }
@@ -103,12 +136,43 @@ namespace SpartaGlobalFormSpecFlowTest
             }
         }
 
+        public string Internet
+        {
+            set
+            {
+                _internet.SendKeys(value);
+            }
+        }
+
+        public void UniversityButton(int us)
+        {
+            _university.Click();
+            for (int i = 0; i < us; i++)
+            {
+                _university.SendKeys("u");
+            }
+        }
+
         public string Address
         {
             set
             {
                 _address.SendKeys(value);
             }
+        }
+
+        public string Address2
+        {
+            set
+            {
+                _address2.SendKeys(value);
+            }
+        }
+
+        public void CountyButton(int num)
+        {
+            _university.Click();
+            _county.SendKeys(counties[num]);
         }
 
         public string City
@@ -124,6 +188,14 @@ namespace SpartaGlobalFormSpecFlowTest
             set
             {
                 _postcode.SendKeys(value);
+            }
+        }
+
+        public string Skills
+        {
+            set
+            {
+                _skills.SendKeys(value);
             }
         }
 
@@ -153,5 +225,9 @@ namespace SpartaGlobalFormSpecFlowTest
         {
             _terms.Click();
         }
+
+        
+        
+
     }
 }
