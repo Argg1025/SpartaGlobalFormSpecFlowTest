@@ -88,6 +88,35 @@ this.ScenarioInitialize(scenarioInfo);
 #line hidden
             this.ScenarioCleanup();
         }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Enter Details Missing One Required Element")]
+        [NUnit.Framework.TestCaseAttribute("1", "Please enter your first name.", null)]
+        [NUnit.Framework.TestCaseAttribute("2", "Please enter your last name.", null)]
+        [NUnit.Framework.TestCaseAttribute("3", "Please enter your age.", null)]
+        [NUnit.Framework.TestCaseAttribute("4", "Please enter an address.", null)]
+        [NUnit.Framework.TestCaseAttribute("5", "Please enter a postcode.", null)]
+        [NUnit.Framework.TestCaseAttribute("6", "Please enter an email.", null)]
+        [NUnit.Framework.TestCaseAttribute("7", "Please enter a phone number.", null)]
+        public virtual void EnterDetailsMissingOneRequiredElement(string an, string error, string[] exampleTags)
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Enter Details Missing One Required Element", null, exampleTags);
+#line 13
+this.ScenarioInitialize(scenarioInfo);
+            this.ScenarioStart();
+#line 14
+ testRunner.Given("I am on the registration page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 15
+ testRunner.And(string.Format("I have entered {0} invalid detail", an), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 16
+ testRunner.And("I have entered all other details correctly", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 17
+ testRunner.When("I press sign in", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 18
+ testRunner.Then(string.Format("I should see the appropriate {0}", error), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
     }
 }
 #pragma warning restore

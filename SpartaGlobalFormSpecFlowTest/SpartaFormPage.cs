@@ -55,6 +55,8 @@ namespace SpartaGlobalFormSpecFlowTest
         private IWebElement _skills;
         [FindsBy(How = How.CssSelector, Using = "input[type = 'url']")]
         private IWebElement _internet;
+        [FindsBy(How = How.ClassName, Using = "invalid-feedback")]
+        private IList<IWebElement> _errorList;
 
         private const string PageUri = @"http://automation-form.spartaglobal.education/";
 
@@ -226,6 +228,13 @@ namespace SpartaGlobalFormSpecFlowTest
             _terms.Click();
         }
 
+        public List<string> ErrorList() {
+            List<string> errorMessages = new List<string>();
+            foreach (var elem in _errorList) {
+                errorMessages.Add(elem.Text);
+            }
+            return errorMessages;
+        } 
         
         
 
